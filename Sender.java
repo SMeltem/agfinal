@@ -12,24 +12,24 @@ public class Sender extends Thread {
 	
 	private static InetAddress host;
 	
-	private static final int PORT = 1241;
+	private static final int PORT = 7777;
 	
 
 	public static void main(String[] args) {
 		
-		//Hata bloğu kullanarak oluşabilecek hatalara karşı uyarı sistemi oluşturuyoruz.
+		//Hata bloÃ°u kullanarak oluÃ¾abilecek hatalara karÃ¾Ã½ uyarÃ½ sistemi oluÃ¾turuyoruz.
 		try {
-			//InetAddres kütüphanesindeki getlocalhost methodunu kullanarak yerel ağ adresimizi değişkene atıyoruz.
+			//InetAddres kÃ¼tÃ¼phanesindeki getlocalhost methodunu kullanarak yerel aÃ° adresimizi deÃ°iÃ¾kene atÃ½yoruz.
 			host = InetAddress.getLocalHost();
-			System.out.println("Bağlantı Sağlandı");
+			System.out.println("BaÃ°lantÃ½ SaÃ°landÃ½");
 					
 			
 
 		} catch (Exception e) {
-			System.out.println("Host ID bulunamadı !");
+			System.out.println("Host ID bulunamadÃ½ !");
 			System.exit(1); 
 		}
-		//Server bağlanıtısı için fonksiyonu çağırıyoruz.
+		//Server baÃ°lanÃ½tÃ½sÃ½ iÃ§in fonksiyonu Ã§aÃ°Ã½rÃ½yoruz.
 		accessServer();
 	}
 	
@@ -45,7 +45,7 @@ public class Sender extends Thread {
 		
 		try {
 			
-			socket =  new Socket(host,PORT); //Socket sınıfının yapıcı methodunu kullanarak bağlantı oluşturuyoruz.
+			socket =  new Socket(host,PORT); //Socket sÃ½nÃ½fÃ½nÃ½n yapÃ½cÃ½ methodunu kullanarak baÃ°lantÃ½ oluÃ¾turuyoruz.
 			
 			Scanner in = new Scanner(socket.getInputStream());
 			
@@ -53,10 +53,10 @@ public class Sender extends Thread {
 			
 			System.out.println("How many packets? ");
 			
-			Scanner userEntry = new Scanner(System.in); //Kullanıcıdan kaç paket yollanacağı bilgisini alıyoruz
+			Scanner userEntry = new Scanner(System.in); //KullanÃ½cÃ½dan kaÃ§ paket yollanacaÃ°Ã½ bilgisini alÃ½yoruz
 			
-			response = userEntry.nextLine(); // Response değişkeninin içine atıyoruz
-			number = Integer.parseInt(response); //Burada da response değişkenine tür dönüşümü yaparak int ifadeye çeviriyoruz.
+			response = userEntry.nextLine(); // Response deÃ°iÃ¾keninin iÃ§ine atÃ½yoruz
+			number = Integer.parseInt(response); //Burada da response deÃ°iÃ¾kenine tÃ¼r dÃ¶nÃ¼Ã¾Ã¼mÃ¼ yaparak int ifadeye Ã§eviriyoruz.
 			
 			long startTime = System.nanoTime();
 			
@@ -64,7 +64,7 @@ public class Sender extends Thread {
 				
 				message = "PCK";
 				out.println(message + counter);
-				//Her yapılan işlemde attempt değerini arttırıyoruz bu değer bizim toplam yaptığımız istek sayısıdır
+				//Her yapÃ½lan iÃ¾lemde attempt deÃ°erini arttÃ½rÃ½yoruz bu deÃ°er bizim toplam yaptÃ½Ã°Ã½mÃ½z istek sayÃ½sÃ½dÃ½r
 				attempt++;
 				
 				
@@ -90,7 +90,7 @@ public class Sender extends Thread {
 			
 			System.out.println("Time taken to send all packets: "+ (endTime - startTime) + " nano seconds.");
 			
-			out.println("***CLOSE***"); //Servera data yolluyoruz bu yollanan datanın diğer classlarda da aynı olması gerekiyor
+			out.println("***CLOSE***"); //Servera data yolluyoruz bu yollanan datanÃ½n diÃ°er classlarda da aynÃ½ olmasÃ½ gerekiyor
 		} 
 		catch (IOException ioEx) {
 			ioEx.printStackTrace();
