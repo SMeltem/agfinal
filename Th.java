@@ -1,11 +1,14 @@
 package test;
 
 public class Th implements Runnable {
-
+	
 	private Thread th;
+	private String routerName;
 	private int paketsayisi; 
-	public Th(int x) {
+	public Th(String name,int x) {
+		routerName = name;
 		paketsayisi = x;
+		System.out.println("Kimden: "+routerName);
 	}
 	
 	@Override
@@ -17,14 +20,19 @@ public class Th implements Runnable {
 			e.printStackTrace();
 		}
 		for (int i = 0; i<paketsayisi; i++) {
-			System.out.println(i+". paket ");	
+			if (routerName.equals("Receiver")) {
+				System.out.println(i+". paket : " + routerName+ " dan alindi. ");
+			}
+			else {
+				System.out.println(i+". paket : " + routerName+ " den gonderildi. ");
+			}
 		}
 	}
 	
 	public void start() {
-		System.out.println("Thread basladi.");
+		System.out.println("Thread basladi "+ routerName + "icin");
 		if (th == null) {
-			th = new Thread(this);
+			th = new Thread(this, routerName);
 			th.start();
 		} 
 		

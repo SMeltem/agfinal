@@ -5,12 +5,14 @@ import java.net.*;
 import java.util.*;
 
 public class Router2 implements Runnable {
+	private String routerName;
 	private ServerSocket routerSocket;
 	private InetAddress host;
-	private static final int port = 77777; //Bu port numarasi olmasýnýn nedeni 6**** sonlanmasi rezerve edilen portlarin.
+	private static final int port = 77777; //Bu port numarasi olmasï¿½nï¿½n nedeni 6**** sonlanmasi rezerve edilen portlarin.
 	private static Socket link2 = null;
-	public Router2() {
-
+	public Router2(String name) {
+		routerName = name;
+		System.out.println("Kimden geldi: "+routerName);
 	}
 	
 	@Override
@@ -99,7 +101,7 @@ public class Router2 implements Runnable {
 	public static void main(String[] args) {
 		//Scanner sc = new Scanner(System.in);
 		//int sayi = sc.nextInt();
-		Th th = new Th(10);
+		Th th = new Th("Router2",10);
 		th.start();
 	}
 }
